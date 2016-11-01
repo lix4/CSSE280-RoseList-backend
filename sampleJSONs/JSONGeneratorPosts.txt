@@ -1,0 +1,20 @@
+[
+  '{{repeat(40, 40)}}',
+  {
+    userName: '{{surname()}}{{integer(1,5)}}',
+    postID: '{{objectId()}}',
+    price: '{{floating(0, 3000, 2, "$0,0.00")}}',
+    type: '{{random("item", "service")}}',
+    category: '{{random("buying", "selling", "announcement", "rides", "other")}}',
+    date: '{{date()}}',
+    description: {
+      name: '{{lorem(3, "words")}}',
+      info: '{{lorem(1, "paragraphs")}}'
+    },
+    replyID: '{{objectId()}}',
+    responses: [
+      '{{repeat(3)}}',
+      '{{objectId()}}'
+      ]
+  }
+]
