@@ -1,0 +1,12 @@
+[
+  '{{repeat(5, 7)}}',
+  {
+    userName: '{{name()}}',
+    cellPhone: '+1 {{phone()}}',
+    campusMailbox: '{{integer(1, 3500)}}',
+    preferences: [
+      '{{repeat(integer(1, 7))}}',
+      '{{lorem(1, "words")}}'
+    ]
+  }
+]
