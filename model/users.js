@@ -3,7 +3,6 @@ var userSchema  = new mongoose.Schema({
     userName: String,
     cellPhone: String,
     campusMailbox: Number,
-    photo: Blob,
     preferences: [String]
 });
 

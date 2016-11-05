@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 var postSchema  = new mongoose.Schema({
     userName: String,
-    postID: Number,
     price: Number,
     type: String,
     category: String,
-    image: Blob,
     date: Date,
-    description: [],
-    replyID: Number,
-    responses: []
+    description: {
+        info: String,
+        name: String,
+    },
+    responses: [String]
 });
 
 mongoose.model('Post', postSchema);
