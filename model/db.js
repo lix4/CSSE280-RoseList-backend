@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 // Will be used to define a function to accept 
 // message and callback function
 var gracefulShutdown;
-var dbURI = 'mongodb://localhost/roselistdb';
+var dbURI = 'mongodb://admin:password@ds139567.mlab.com:39567/roselistdb';
 if (process.env.NODE_ENV === 'production'){
     dbURI = process.env.MLAB_URI;
 }
