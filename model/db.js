@@ -8,6 +8,7 @@ var dbURI = 'mongodb://admin:password@ds139567.mlab.com:39567/roselistdb';
 if (process.env.NODE_ENV === 'production'){
     dbURI = process.env.MLAB_URI;
 }
+mongoose.Promise = global.Promise;
 mongoose.connect(dbURI);
 
 // Emulating disconnection events on Windows

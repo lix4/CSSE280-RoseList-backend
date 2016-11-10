@@ -36,7 +36,10 @@ router.route('/')
             type: req.body.type,
             category: req.body.category,
             date: new Date(),
-            description: req.body.description,
+            name: req.body.name,
+            info: req.body.info,
+            email: req.body.email,
+            phone: req.body.phone,
             responses: []
         }, function (err, post) {
             if (err) {
@@ -100,8 +103,11 @@ router.route('/:id').get(function (req, res, next) {
         post.type = req.body.type || post.type;
         post.category = req.body.category || post.category;
         post.date = post.date || new Date();
-        post.description = req.body.description || post.description;
+        post.name = req.body.name || post.name;
+        post.info = req.body.info || post.info;
         post.responses = req.body.responses || post.responses;
+        post.email = req.body.email || post.email;
+        post.phone = req.body.phone || post.phone;
         post.save(function (err, updatedPost) {
             if (err) {
                 res.status(404);

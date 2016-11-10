@@ -1,15 +1,19 @@
 var mongoose = require('mongoose');
-var postSchema  = new mongoose.Schema({
+
+
+
+var postSchema = new mongoose.Schema({
     userName: String,
     price: Number,
     type: String,
     category: String,
     date: Date,
-    description: {
-        info: String,
-        name: String,
-    },
-    responses: [String]
+    info: String,
+    name: String,
+    phone: String,
+    email: String,
+    responses: mongoose.Schema.Types.Mixed
 });
 
-mongoose.model('Post', postSchema);
+
+exports.Post = mongoose.model('Post', postSchema); 

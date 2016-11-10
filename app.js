@@ -5,12 +5,18 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var RosefireTokenVerifier = require('rosefire-node');
 
 var db = require('./model/db');
 
 var index = require('./routes/index');
 var posts = require('./routes/posts');
 var users = require('./routes/users')
+
+var rosefire = new RosefireTokenVerifier('whatalovelyday');
+
 
 
 var app = express();
@@ -30,8 +36,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/posts', posts);
 app.use('/users', users);
+//app.use(expressJWT.({ secret: 'whatalovelyday'}).unless({path: }))
 
 
+app.post('/users', function (req, res) {
+  var token = req.headers.authorization;
+  if (!token) {
+    res.status(401).json({
+      error: 'Not authorized!'
+    });
+    return;
+  }
+  token = token.split(' ')[1]; 
+  rosefire.verify(token, function(err, authData) {
+    if (err) {
+      res.status(401).json({
+        error: 'Not authorized!'
+      });
+    } else {
+      console.log(authData.username); // rockwotj
+      console.log(authData.issued_at); // <Date Object of issued time> 
+      console.log(authData.group); // STUDENT (Only there if options asked)
+      console.log(authData.expires) // <Date Object> (Only there if options asked)
+      res.json(authData);
+    }
+  });
+});
 
 
 // catch 404 and forward to error handler
